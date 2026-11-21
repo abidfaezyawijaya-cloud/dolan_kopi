@@ -1,0 +1,144 @@
+/* Dolan Kopi — Bespoke Editorial Cafe Stylesheet */
+
+/* Subtle Film Grain Texture to remove synthetic AI look and give authentic tactile warmth */
+.grain-bg {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Smooth Scrolling & Typography tuning */
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Subtle continuous smooth marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Soft floating animation for badges */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+
+/* Modal Animations */
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Order Tray Slide up */
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Active Category Pill Styling */
+.menu-tab-btn {
+  background-color: transparent;
+  color: #7A6E67;
+  border: 1px solid rgba(63, 50, 43, 0.12);
+  white-space: nowrap;
+}
+
+.menu-tab-btn:hover {
+  background-color: #FAF6EE;
+  color: #1A1513;
+}
+
+.menu-tab-btn.active {
+  background-color: #1A1513;
+  color: #FAF6EE;
+  border-color: #1A1513;
+  box-shadow: 0 4px 12px rgba(26, 21, 19, 0.15);
+}
+
+/* Party button in Estimator */
+.party-btn {
+  background-color: white;
+  color: #3F322B;
+}
+
+.party-btn.active {
+  background-color: #C26D38;
+  color: white;
+  border-color: #C26D38;
+}
+
+/* Custom Scrollbar for sleek appearance */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF6EE;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9CDC2;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C26D38;
+}
+
+/* Utilities */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

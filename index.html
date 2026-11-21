@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dolan Kopi — Tempat Seduh & Temu Teduh di Cikupa, Tangerang</title>
+  <meta name="description" content="Dolan Kopi Cikupa, Tangerang. Ruang temu hangat untuk kopi istimewa, camilan lezat, dan kerja santai di Jl. Verdi Timur No.1 Blok G8 Citra Raya. Harga bersahabat Rp 25k–50k." />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display / Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN with configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Syne"', 'sans-serif'],
+            serif: ['"Newsreader"', 'serif'],
+          },
+          colors: {
+            brand: {
+              espresso: '#1A1513',
+              roast: '#2B221E',
+              coffee: '#3F322B',
+              caramel: '#C26D38',
+              amber: '#E08343',
+              sand: '#E9DEC3',
+              cream: '#FAF6EE',
+              oat: '#F4EEE1',
+              muted: '#7A6E67',
+              sage: '#586A53'
+            }
+          },
+          boxShadow: {
+            'warm': '0 20px 40px -15px rgba(43, 34, 30, 0.08), 0 0 0 1px rgba(43, 34, 30, 0.04)',
+            'warm-hover': '0 30px 60px -15px rgba(43, 34, 30, 0.16), 0 0 0 1px rgba(194, 109, 56, 0.18)',
+            'pill': '0 4px 20px -2px rgba(43, 34, 30, 0.12)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-brand-cream text-brand-espresso antialiased selection:bg-brand-amber selection:text-white">
+
+  <!-- Grain Ambient Layer -->
+  <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.035] mix-blend-overlay grain-bg"></div>
+
+  <!-- Announcement Bar (Operational Status) -->
+  <header class="sticky top-0 z-40 bg-brand-cream/85 backdrop-blur-md border-b border-brand-coffee/10 transition-all duration-300" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a href="#beranda" class="group flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-brand-espresso text-brand-sand flex items-center justify-center font-display font-extrabold text-xl shadow-md group-hover:scale-105 group-hover:bg-brand-caramel transition-all duration-300">
+            D
+          </div>
+          <div class="flex flex-col">
+            <span class="font-display font-bold text-xl tracking-tight text-brand-espresso leading-none flex items-center gap-1.5">
+              DOLAN KOPI
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-brand-caramel"></span>
+            </span>
+            <span class="text-[11px] font-medium tracking-wider text-brand-muted uppercase mt-0.5">Citra Raya · Cikupa</span>
+          </div>
+        </a>
+
+        <!-- Live Status Pill (Dynamic Open/Close calculation) -->
+        <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-oat/90 border border-brand-coffee/10 text-xs font-medium" id="statusPillContainer">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" id="statusPing"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" id="statusDot"></span>
+          </span>
+          <span id="statusText" class="text-brand-coffee font-semibold">Memuat status buka...</span>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-brand-coffee">
+          <a href="#suasana" class="hover:text-brand-caramel transition-colors">Suasana</a>
+          <a href="#menu" class="hover:text-brand-caramel transition-colors">Buku Menu</a>
+          <a href="#estimator" class="hover:text-brand-caramel transition-colors">Hitung Budget</a>
+          <a href="#lokasi" class="hover:text-brand-caramel transition-colors">Lokasi & Kontak</a>
+        </nav>
+
+        <!-- CTA & WhatsApp Action -->
+        <div class="flex items-center gap-3">
+          <button onclick="openWhatsAppModal()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-brand-espresso text-brand-cream text-xs font-semibold tracking-wide uppercase hover:bg-brand-caramel active:scale-95 transition-all duration-200 shadow-sm">
+            <i data-lucide="message-circle" class="w-4 h-4 text-brand-sand"></i>
+            <span>Chat & Reservasi</span>
+          </button>
+          
+          <!-- Mobile Menu Toggle Button -->
+          <button id="mobileMenuBtn" aria-label="Toggle Navigation Menu" class="lg:hidden p-2.5 rounded-xl border border-brand-coffee/15 text-brand-espresso hover:bg-brand-oat transition">
+            <i data-lucide="menu" class="w-5 h-5" id="mobileMenuIcon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-brand-coffee/10 bg-brand-cream/98 px-6 py-6 transition-all duration-300">
+      <div class="flex flex-col gap-4 text-base font-medium text-brand-espresso">
+        <!-- Live status in mobile menu -->
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-brand-oat border border-brand-coffee/10 text-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span id="mobileStatusText">Buka hari ini pukul 10.30 WIB</span>
+        </div>
+        <a href="#suasana" class="py-2 border-b border-brand-coffee/5 hover:text-brand-caramel" onclick="toggleMobileMenu()">Suasana & Tempat</a>
+        <a href="#menu" class="py-2 border-b border-brand-coffee/5 hover:text-brand-caramel" onclick="toggleMobileMenu()">Buku Menu & Harga</a>
+        <a href="#estimator" class="py-2 border-b border-brand-coffee/5 hover:text-brand-caramel" onclick="toggleMobileMenu()">Kalkulator Nongkrong (25k-50k)</a>
+        <a href="#lokasi" class="py-2 hover:text-brand-caramel" onclick="toggleMobileMenu()">Lokasi & Petunjuk Arah</a>
+        
+        <div class="pt-2 flex flex-col gap-2">
+          <button onclick="openWhatsAppModal()" class="w-full py-3 rounded-xl bg-brand-espresso text-brand-cream text-sm font-semibold flex items-center justify-center gap-2">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            Chat WhatsApp (0811-9889-5355)
+          </button>
+          <a href="https://maps.app.goo.gl/ythFFxaQsXjWjhJi8" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-xl border border-brand-coffee/20 text-brand-espresso text-sm font-semibold flex items-center justify-center gap-2 hover:bg-brand-oat">
+            <i data-lucide="map-pin" class="w-4 h-4 text-brand-caramel"></i>
+            Buka di Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="beranda" class="relative pt-8 pb-16 md:pt-14 md:pb-24 overflow-hidden">
+      <!-- Ambient Glows -->
+      <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[360px] bg-gradient-to-tr from-brand-caramel/15 via-brand-sand/30 to-transparent blur-3xl -z-10 rounded-full pointer-events-none"></div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Hero Text -->
+          <div class="lg:col-span-7 flex flex-col items-start space-y-6">
+            
+            <!-- Curated Tag -->
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-brand-oat border border-brand-coffee/10 text-xs text-brand-coffee font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-caramel"></span>
+              <span>Kedai Kopi Kasual di Citra Raya, Cikupa</span>
+              <span class="text-brand-muted">•</span>
+              <span class="text-brand-caramel font-semibold">Rp 25k–50k / orang</span>
+            </div>
+
+            <!-- Headline with Editorial Polish -->
+            <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-brand-espresso tracking-tight leading-[1.12]">
+              Singgah sejenak, nikmati seduhan hangat di sudut <span class="font-serif italic font-normal text-brand-caramel">Cikupa.</span>
+            </h1>
+
+            <p class="text-brand-muted text-base sm:text-lg max-w-xl leading-relaxed">
+              Dolan Kopi adalah ruang teduh untuk rehat dari rutinitas, menikmati racikan kopi susu aren andalan, manual brew berkarakter, hingga camilan renyah bersama teman atau laptop kesayangan.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3.5 pt-2 w-full sm:w-auto">
+              <a href="#menu" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-brand-espresso text-brand-cream text-sm font-semibold tracking-wide hover:bg-brand-caramel transition-all duration-300 shadow-warm flex items-center justify-center gap-2 group">
+                <span>Eksplorasi Buku Menu</span>
+                <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
+              </a>
+              <a href="https://maps.app.goo.gl/ythFFxaQsXjWjhJi8" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/80 hover:bg-white text-brand-espresso border border-brand-coffee/15 text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow">
+                <i data-lucide="navigation" class="w-4 h-4 text-brand-caramel"></i>
+                <span>Petunjuk Arah (Maps)</span>
+              </a>
+            </div>
+
+            <!-- Quick Trust Badges -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-brand-coffee/10 w-full">
+              <div class="flex flex-col">
+                <span class="font-display font-bold text-lg text-brand-espresso flex items-center gap-1">
+                  4.7 <i data-lucide="star" class="w-4 h-4 fill-amber-400 text-amber-400"></i>
+                </span>
+                <span class="text-xs text-brand-muted mt-0.5">39+ Ulasan Google</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display font-bold text-lg text-brand-espresso">10.30 WIB</span>
+                <span class="text-xs text-brand-muted mt-0.5">Buka Setiap Hari</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display font-bold text-lg text-brand-espresso">25k - 50k</span>
+                <span class="text-xs text-brand-muted mt-0.5">Harga Ramah Kantong</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display font-bold text-lg text-brand-espresso">WiFi + Colokan</span>
+                <span class="text-xs text-brand-muted mt-0.5">Nyaman untuk WFC</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Hero Visual Media Collage -->
+          <div class="lg:col-span-5 relative">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+              
+              <!-- Main Atmospheric Photo -->
+              <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-brand-roast">
+                <img 
+                  src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Suasana Ruang Dolan Kopi Cikupa" 
+                  class="w-full h-full object-cover object-center transform hover:scale-105 transition duration-700 ease-out"
+                  loading="eager"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-espresso/80 via-transparent to-transparent"></div>
+                
+                <!-- Bottom overlay on photo -->
+                <div class="absolute bottom-6 left-6 right-6 text-white">
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-medium tracking-wide uppercase text-white mb-2">
+                    <i data-lucide="map-pin" class="w-3 h-3 text-brand-sand"></i>
+                    Citra Raya, Blok G8 No.1
+                  </div>
+                  <h3 class="font-display font-bold text-xl leading-snug">
+                    "Dolan": Tempat Asik Buat Kumpul & Bercerita.
+                  </h3>
+                </div>
+              </div>
+
+              <!-- Floating Micro Card 1: Signature Drink -->
+              <div class="absolute -top-4 -left-6 sm:-left-8 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-warm border border-brand-coffee/10 flex items-center gap-3 max-w-[210px] animate-gentle-float">
+                <div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-brand-oat">
+                  <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=150&q=80" alt="Dolan Aren Latte" class="w-full h-full object-cover">
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[10px] uppercase font-bold tracking-wider text-brand-caramel">Favorit Warga</span>
+                  <span class="text-xs font-bold text-brand-espresso leading-tight">Dolan Aren Latte</span>
+                  <span class="text-[11px] text-brand-muted font-semibold mt-0.5">Rp 28.000</span>
+                </div>
+              </div>
+
+              <!-- Floating Micro Card 2: Space Feature -->
+              <div class="absolute -bottom-5 -right-4 sm:-right-6 bg-brand-espresso text-brand-cream p-4 rounded-2xl shadow-warm border border-white/10 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-caramel/20 flex items-center justify-center text-brand-amber">
+                  <i data-lucide="wifi" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white leading-none">Colokan & Fast Wi-Fi</div>
+                  <div class="text-[11px] text-brand-sand/80 mt-1">Indoor AC & Semi Outdoor</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDING TICKER / MARQUEE -->
+    <div class="w-full bg-brand-espresso text-brand-sand py-3.5 overflow-hidden border-y border-brand-coffee/20">
+      <div class="flex whitespace-nowrap gap-12 marquee-track text-xs sm:text-sm font-medium tracking-widest uppercase">
+        <span class="flex items-center gap-3">☕ KOPI SUSU GULA AREN <span class="text-brand-caramel">★</span></span>
+        <span class="flex items-center gap-3">🌿 OUTDOOR & INDOOR AC <span class="text-brand-caramel">★</span></span>
+        <span class="flex items-center gap-3">🥐 CROISSANT & CRISPY BITES <span class="text-brand-caramel">★</span></span>
+        <span class="flex items-center gap-3">💻 WFC FRIENDLY CITRA RAYA <span class="text-brand-caramel">★</span></span>
+        <span class="flex items-center gap-3">📍 JL. VERDI TIMUR BLOK G8 <span class="text-brand-caramel">★</span></span>
+        <span class="flex items-center gap-3">✨ HARGA MULAI 25 RIBU <span class="text-brand-caramel">★</span></span>
+        <!-- Repeated for seamless loop -->
+        <span class="flex items-center gap-3">☕ KOPI SUSU GULA AREN <span class="text-brand-caramel">★</span></span>
+        <span class="flex items-center gap-3">🌿 OUTDOOR & INDOOR AC <span class="text-brand-caramel">★</span></span>
+        <span class="flex items-center gap-3">🥐 CROISSANT & CRISPY BITES <span class="text-brand-caramel">★</span></span>
+        <span class="flex items-center gap-3">💻 WFC FRIENDLY CITRA RAYA <span class="text-brand-caramel">★</span></span>
+        <span class="flex items-center gap-3">📍 JL. VERDI TIMUR BLOK G8 <span class="text-brand-caramel">★</span></span>
+        <span class="flex items-center gap-3">✨ HARGA MULAI 25 RIBU <span class="text-brand-caramel">★</span></span>
+      </div>
+    </div>
+
+    <!-- THE ATMOSPHERE & EXPERIENCE -->
+    <section id="suasana" class="py-20 bg-brand-cream relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div class="max-w-2xl">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-caramel">Ruang & Kenyamanan</span>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl text-brand-espresso mt-1 tracking-tight">
+              Lebih dari sekadar ngopi, ini ruang nyaman untuk siapa saja.
+            </h2>
+            <p class="text-brand-muted text-sm sm:text-base mt-2">
+              Didesain dengan pencahayaan hangat, tata meja lapang, serta pilihan area indoor ber-AC maupun semi-outdoor santai.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-brand-coffee font-medium bg-brand-oat px-3 py-1.5 rounded-full border border-brand-coffee/10">
+              📍 Area Cikupa - Citra Raya
+            </span>
+          </div>
+        </div>
+
+        <!-- 3 Feature Cards (Boutique Grid) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Card 1: WFC Spot -->
+          <div class="group relative rounded-3xl overflow-hidden bg-white border border-brand-coffee/10 p-6 flex flex-col justify-between hover:shadow-warm-hover transition-all duration-300">
+            <div class="aspect-[16/10] rounded-2xl overflow-hidden mb-5 bg-brand-oat relative">
+              <img 
+                src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=700&q=80" 
+                alt="Area WFC Dolan Kopi" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute top-3 left-3 bg-brand-espresso/80 backdrop-blur-sm text-brand-sand px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5">
+                <i data-lucide="laptop" class="w-3.5 h-3.5"></i>
+                Indoor Ber-AC
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-lg text-brand-espresso group-hover:text-brand-caramel transition-colors">
+                Work From Cafe (WFC) Tenang
+              </h3>
+              <p class="text-brand-muted text-xs sm:text-sm mt-2 leading-relaxed">
+                Butuh tempat fokus untuk revisi skripsi atau remote work? Stopkontak memadai, meja stabil, playlist akustik santai yang tidak bising, dan koneksi internet siap temani produktivitasmu.
+              </p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-brand-coffee/5 flex items-center justify-between text-xs font-medium text-brand-coffee">
+              <span>Fasilitas: Wi-Fi + Colokan</span>
+              <span class="text-brand-caramel font-semibold">Tersedia</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Semi-Outdoor Vibe -->
+          <div class="group relative rounded-3xl overflow-hidden bg-white border border-brand-coffee/10 p-6 flex flex-col justify-between hover:shadow-warm-hover transition-all duration-300">
+            <div class="aspect-[16/10] rounded-2xl overflow-hidden mb-5 bg-brand-oat relative">
+              <img 
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80" 
+                alt="Area Kumpul Santai Dolan Kopi" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute top-3 left-3 bg-brand-espresso/80 backdrop-blur-sm text-brand-sand px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5">
+                <i data-lucide="users" class="w-3.5 h-3.5"></i>
+                Semi Outdoor
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-lg text-brand-espresso group-hover:text-brand-caramel transition-colors">
+                Nongkrong Santai Sore
+              </h3>
+              <p class="text-brand-muted text-xs sm:text-sm mt-2 leading-relaxed">
+                Area terbuka dengan sirkulasi udara bebas, pas buat ngobrol lepas saat senja tiba bersama kawan terdekat. Suasana kasual khas kedai kopi lingkungan yang ramah.
+              </p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-brand-coffee/5 flex items-center justify-between text-xs font-medium text-brand-coffee">
+              <span>Smoking Area Nyaman</span>
+              <span class="text-brand-caramel font-semibold">Alami & Teduh</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Slow Coffee Bar -->
+          <div class="group relative rounded-3xl overflow-hidden bg-white border border-brand-coffee/10 p-6 flex flex-col justify-between hover:shadow-warm-hover transition-all duration-300">
+            <div class="aspect-[16/10] rounded-2xl overflow-hidden mb-5 bg-brand-oat relative">
+              <img 
+                src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=700&q=80" 
+                alt="Barista Bar Dolan Kopi" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute top-3 left-3 bg-brand-espresso/80 backdrop-blur-sm text-brand-sand px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5">
+                <i data-lucide="coffee" class="w-3.5 h-3.5"></i>
+                Barista Bar
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-lg text-brand-espresso group-hover:text-brand-caramel transition-colors">
+                Seduhan Barista Penuh Dedikasi
+              </h3>
+              <p class="text-brand-muted text-xs sm:text-sm mt-2 leading-relaxed">
+                Duduk langsung di depan bar, cium aroma gilingan biji kopi nusantara yang fresh, dan konsultasikan rasa kopi favoritmu—dari creamy manis hingga fruity notes V60.
+              </p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-brand-coffee/5 flex items-center justify-between text-xs font-medium text-brand-coffee">
+              <span>Biji Kopi Terkurasi</span>
+              <span class="text-brand-caramel font-semibold">Fresh Grind</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE BUKU MENU & DIRECT ORDER -->
+    <section id="menu" class="py-20 bg-brand-oat/50 relative border-t border-brand-coffee/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-10">
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-caramel">Pilihan Menu Terfavorit</span>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl text-brand-espresso mt-1 tracking-tight">
+            Cita Rasa Istimewa, Harga Bersahabat.
+          </h2>
+          <p class="text-brand-muted text-sm sm:text-base mt-2">
+            Semua menu berada dalam rentang santai <strong>Rp 25.000 – Rp 50.000</strong>. Pilih dan pesan langsung ke meja atau takeaway via WhatsApp.
+          </p>
+        </div>
+
+        <!-- Filter Tabs & Search Bar -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+          
+          <!-- Category Pills -->
+          <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 scrollbar-none" id="categoryTabs">
+            <button class="menu-tab-btn active px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200" data-cat="all">
+              Semua Menu
+            </button>
+            <button class="menu-tab-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200" data-cat="signature">
+              Signature Dolan
+            </button>
+            <button class="menu-tab-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200" data-cat="coffee">
+              Espresso & Manual
+            </button>
+            <button class="menu-tab-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200" data-cat="noncoffee">
+              Non-Coffee
+            </button>
+            <button class="menu-tab-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200" data-cat="bites">
+              Camilan & Makanan
+            </button>
+          </div>
+
+          <!-- Quick Search -->
+          <div class="relative w-full sm:w-72">
+            <i data-lucide="search" class="w-4 h-4 text-brand-muted absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+            <input 
+              type="text" 
+              id="menuSearchInput" 
+              placeholder="Cari kopi, matcha, cireng..." 
+              class="w-full pl-9 pr-4 py-2 rounded-full bg-white border border-brand-coffee/15 text-xs text-brand-espresso focus:outline-none focus:border-brand-caramel transition shadow-sm"
+            />
+          </div>
+        </div>
+
+        <!-- Menu Grid -->
+        <div id="menuContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Populated dynamically by JavaScript -->
+        </div>
+
+        <!-- Floating Order Summary Tray (When user adds items) -->
+        <div id="orderTray" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-11/12 max-w-xl bg-brand-espresso text-brand-cream rounded-2xl p-4 shadow-2xl border border-white/10 flex items-center justify-between gap-4 animate-slide-up">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-caramel text-white flex items-center justify-center font-bold text-sm">
+              <span id="trayItemCount">0</span>
+            </div>
+            <div>
+              <div class="text-xs text-brand-sand/70">Estimasi Pesanan Anda:</div>
+              <div class="text-sm font-bold text-white" id="trayTotalPrice">Rp 0</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="clearOrderTray()" class="p-2 text-brand-sand/60 hover:text-white text-xs transition" title="Hapus Semua">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+            <button onclick="checkoutOrderWhatsApp()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>Kirim ke WhatsApp</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ESTIMATOR BUDGET NONGKRONG (Rp 25k - 50k / pax) -->
+    <section id="estimator" class="py-20 bg-brand-cream relative">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-white rounded-3xl p-6 sm:p-10 border border-brand-coffee/15 shadow-warm relative overflow-hidden">
+          <!-- Background decoration -->
+          <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-brand-sand/40 blur-2xl pointer-events-none"></div>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-brand-coffee/10">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-caramel">Kalkulator Cerdas</span>
+              <h3 class="font-display font-bold text-2xl text-brand-espresso mt-0.5">
+                Hitung Budget Nongkrong di Dolan Kopi
+              </h3>
+              <p class="text-xs sm:text-sm text-brand-muted mt-1">
+                Rata-rata pengunjung menghabiskan <strong>Rp 25.000 – Rp 50.000 per orang</strong>. Coba simulasikan pesananmu!
+              </p>
+            </div>
+            <div class="px-3.5 py-1.5 rounded-full bg-brand-oat text-brand-coffee text-xs font-semibold flex items-center gap-1.5">
+              <i data-lucide="wallet" class="w-3.5 h-3.5 text-brand-caramel"></i>
+              <span>Ramah Budget</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            
+            <!-- Controls -->
+            <div class="space-y-6">
+              
+              <!-- Jumlah Orang -->
+              <div>
+                <label class="block text-xs font-bold text-brand-espresso uppercase tracking-wider mb-2">
+                  Berapa Orang yang Datang?
+                </label>
+                <div class="grid grid-cols-4 gap-2" id="partySizeBtns">
+                  <button type="button" class="party-btn active py-2.5 rounded-xl border border-brand-coffee/20 text-xs font-bold transition" data-size="1">1 Orang (Solo)</button>
+                  <button type="button" class="party-btn py-2.5 rounded-xl border border-brand-coffee/20 text-xs font-bold transition" data-size="2">Berdua</button>
+                  <button type="button" class="party-btn py-2.5 rounded-xl border border-brand-coffee/20 text-xs font-bold transition" data-size="4">4 Orang</button>
+                  <button type="button" class="party-btn py-2.5 rounded-xl border border-brand-coffee/20 text-xs font-bold transition" data-size="6">6+ Orang</button>
+                </div>
+              </div>
+
+              <!-- Pilihan Tipe Nongkrong -->
+              <div>
+                <label class="block text-xs font-bold text-brand-espresso uppercase tracking-wider mb-2">
+                  Gaya & Kebutuhan Kamu
+                </label>
+                <div class="flex flex-col gap-2.5" id="styleOptions">
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-brand-coffee/15 bg-brand-oat/40 cursor-pointer hover:bg-brand-oat transition">
+                    <input type="radio" name="nongkrongStyle" value="quick" checked class="text-brand-caramel focus:ring-brand-caramel" />
+                    <div>
+                      <div class="text-xs font-bold text-brand-espresso">Ngopi Santai (Kopi + Camilan Ringan)</div>
+                      <div class="text-[11px] text-brand-muted">Cocok buat rehat 1-2 jam atau obrolan santai</div>
+                    </div>
+                  </label>
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-brand-coffee/15 bg-brand-oat/40 cursor-pointer hover:bg-brand-oat transition">
+                    <input type="radio" name="nongkrongStyle" value="wfc" class="text-brand-caramel focus:ring-brand-caramel" />
+                    <div>
+                      <div class="text-xs font-bold text-brand-espresso">Work From Cafe (WFC Produktif)</div>
+                      <div class="text-[11px] text-brand-muted">Minuman segar + camilan porsi nugas 3-4 jam</div>
+                    </div>
+                  </label>
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-brand-coffee/15 bg-brand-oat/40 cursor-pointer hover:bg-brand-oat transition">
+                    <input type="radio" name="nongkrongStyle" value="meal" class="text-brand-caramel focus:ring-brand-caramel" />
+                    <div>
+                      <div class="text-xs font-bold text-brand-espresso">Makan Kenyang & Ngopi Lengkap</div>
+                      <div class="text-[11px] text-brand-muted">Makanan berat + signature coffee + side dish</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Result Box -->
+            <div class="bg-brand-roast text-brand-cream rounded-2xl p-6 flex flex-col justify-between h-full border border-brand-coffee/30 shadow-lg">
+              <div>
+                <div class="flex items-center justify-between pb-3 border-b border-brand-coffee/40">
+                  <span class="text-xs text-brand-sand/80 font-medium uppercase tracking-wider">Perkiraan Biaya Total</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded-full bg-brand-caramel/30 text-brand-amber font-semibold" id="estTag">Hemat & Pas</span>
+                </div>
+                
+                <div class="my-4">
+                  <div class="font-display font-extrabold text-3xl sm:text-4xl text-brand-sand" id="estTotalDisplay">
+                    Rp 28.000 - Rp 35.000
+                  </div>
+                  <div class="text-xs text-brand-sand/70 mt-1" id="estPerPaxDisplay">
+                    ≈ Rp 28.000 per orang
+                  </div>
+                </div>
+
+                <div class="space-y-2 pt-3 border-t border-brand-coffee/40 text-xs" id="estPackageDetails">
+                  <!-- Dynamically inserted recommendation -->
+                  <div class="flex items-center justify-between text-brand-sand/90">
+                    <span>☕ 1x Dolan Aren Latte</span>
+                    <span class="font-semibold">Rp 28.000</span>
+                  </div>
+                  <div class="flex items-center justify-between text-brand-sand/90">
+                    <span>🍟 1x Cireng Rujak / Fries (sharing)</span>
+                    <span class="font-semibold">Rp 25.000</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-brand-coffee/40">
+                <button onclick="shareEstimateToWA()" class="w-full py-3 rounded-xl bg-brand-caramel hover:bg-brand-amber text-white font-bold text-xs tracking-wide uppercase transition flex items-center justify-center gap-2">
+                  <i data-lucide="message-circle" class="w-4 h-4"></i>
+                  <span>Tanya Meja Sesuai Budget Ini</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- REAL CUSTOMER VOICES (39+ Reviews Google) -->
+    <section class="py-20 bg-brand-oat/40 border-t border-brand-coffee/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-caramel">Kata Pengunjung Kami</span>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl text-brand-espresso mt-1 tracking-tight">
+              Cerita Hangat dari yang Pernah Singgah
+            </h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="flex text-amber-400">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <span class="text-xs font-bold text-brand-espresso">4.7 / 5.0 (39 Ulasan Google)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div class="bg-white p-6 rounded-2xl border border-brand-coffee/10 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 mb-3">
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+              </div>
+              <p class="text-brand-coffee text-xs sm:text-sm leading-relaxed italic font-serif">
+                "Kopi arennya pas banget, gak kemanisan dan rasa kopinya masih berani. Suasana di blok G8 Verdi ini tenang banget dibanding jalan raya utama, cocok buat laptopan sore."
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-brand-coffee/5 flex items-center justify-between">
+              <div>
+                <div class="text-xs font-bold text-brand-espresso">Dimas Aditya</div>
+                <div class="text-[11px] text-brand-muted">Local Guide · Citra Raya</div>
+              </div>
+              <span class="text-[10px] text-brand-muted">via Google Maps</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-brand-coffee/10 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 mb-3">
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+              </div>
+              <p class="text-brand-coffee text-xs sm:text-sm leading-relaxed italic font-serif">
+                "Harga 25k-30 ribuan buat kualitas kopi seenak ini worth it banget! Cireng rujak sama kentangnya garing. Baristanya juga asik diajak ngobrol soal beans."
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-brand-coffee/5 flex items-center justify-between">
+              <div>
+                <div class="text-xs font-bold text-brand-espresso">Rina Kartika</div>
+                <div class="text-[11px] text-brand-muted">Pengunjung Mingguan</div>
+              </div>
+              <span class="text-[10px] text-brand-muted">via Google Maps</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-brand-coffee/10 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 mb-3">
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+              </div>
+              <p class="text-brand-coffee text-xs sm:text-sm leading-relaxed italic font-serif">
+                "Tempatnya bersih, outdoor-nya adem waktu angin semilir. Enak buat meet up santai bareng keluarga atau temen lama. Pasti balik lagi kalau ke daerah Cikupa."
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-brand-coffee/5 flex items-center justify-between">
+              <div>
+                <div class="text-xs font-bold text-brand-espresso">Bagus Pratama</div>
+                <div class="text-[11px] text-brand-muted">Warga Tangerang</div>
+              </div>
+              <span class="text-[10px] text-brand-muted">via Google Maps</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LOCATION, MAP & OPERATIONAL DETAILS -->
+    <section id="lokasi" class="py-20 bg-brand-cream relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          
+          <!-- Location Details & Action Card -->
+          <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+            
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-caramel">Kunjungi Kedai Kami</span>
+              <h2 class="font-display font-bold text-3xl sm:text-4xl text-brand-espresso mt-1 tracking-tight">
+                Lokasi Mudah Ditemukan di Citra Raya Cikupa
+              </h2>
+              <p class="text-brand-muted text-sm mt-2 leading-relaxed">
+                Terletak di klaster Verdi yang asri dan tenang. Area parkir motor & mobil tersedia di depan ruko / kedai.
+              </p>
+            </div>
+
+            <!-- Address Card with Copy Button -->
+            <div class="bg-white p-5 rounded-2xl border border-brand-coffee/15 shadow-sm space-y-4">
+              
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-oat text-brand-caramel flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-brand-espresso">Alamat Lengkap:</div>
+                  <div class="text-xs text-brand-coffee leading-relaxed mt-0.5 font-medium" id="addressText">
+                    Jl. Verdi Timur No.1 Blok G8, Dukuh, Kec. Cikupa, Kabupaten Tangerang, Banten 15710
+                  </div>
+                  <div class="text-[11px] text-brand-muted font-mono mt-1">
+                    Plus Code: QG6F+RR Dukuh, Cikupa
+                  </div>
+                </div>
+              </div>
+
+              <!-- Button Copy Address -->
+              <div class="flex items-center gap-2 pt-2 border-t border-brand-coffee/10">
+                <button onclick="copyAddressToClipboard()" class="flex-1 py-2 px-3 rounded-xl bg-brand-oat hover:bg-brand-coffee/10 text-brand-espresso text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+                  <i data-lucide="copy" class="w-3.5 h-3.5 text-brand-caramel"></i>
+                  <span id="copyBtnText">Salin Alamat</span>
+                </button>
+                <a href="https://maps.app.goo.gl/ythFFxaQsXjWjhJi8" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-xl bg-brand-caramel hover:bg-brand-amber text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition shadow-sm">
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  <span>Buka di Google Maps</span>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Operational Hours Card -->
+            <div class="bg-white p-5 rounded-2xl border border-brand-coffee/15 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="clock" class="w-4 h-4 text-brand-caramel"></i>
+                  <span class="text-xs font-bold text-brand-espresso uppercase tracking-wider">Jam Buka</span>
+                </div>
+                <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold" id="hoursBadge">Buka Setiap Hari</span>
+              </div>
+
+              <div class="divide-y divide-brand-coffee/5 text-xs text-brand-coffee">
+                <div class="py-1.5 flex justify-between">
+                  <span class="text-brand-muted">Senin – Kamis</span>
+                  <span class="font-semibold">10:30 – 22:30 WIB</span>
+                </div>
+                <div class="py-1.5 flex justify-between">
+                  <span class="text-brand-muted">Jumat</span>
+                  <span class="font-semibold">10:30 – 23:00 WIB</span>
+                </div>
+                <div class="py-1.5 flex justify-between">
+                  <span class="text-brand-muted">Sabtu – Minggu</span>
+                  <span class="font-semibold">10:30 – 23:00 WIB</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact & Social -->
+            <div class="flex items-center gap-3">
+              <a href="https://wa.me/6281198895355" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-4 rounded-2xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold flex items-center justify-center gap-2 transition shadow-sm">
+                <i data-lucide="phone-call" class="w-4 h-4"></i>
+                <span>0811-9889-5355</span>
+              </a>
+              <button onclick="openWhatsAppModal()" class="py-3 px-4 rounded-2xl bg-brand-espresso hover:bg-brand-caramel text-brand-cream text-xs font-bold transition flex items-center gap-1.5">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span>Reservasi Meja</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Interactive Visual Map Card -->
+          <div class="lg:col-span-7 flex flex-col">
+            <div class="relative w-full h-full min-h-[420px] rounded-3xl overflow-hidden border border-brand-coffee/20 shadow-warm bg-brand-oat flex flex-col">
+              
+              <!-- Map Mockup / Embed container -->
+              <div class="relative flex-1 w-full bg-[#E5E3DF] overflow-hidden group">
+                
+                <!-- Google Maps iframe for accuracy -->
+                <iframe 
+                  title="Peta Lokasi Dolan Kopi Cikupa"
+                  src="https://maps.google.com/maps?q=-6.2379511,106.5245415&z=17&output=embed" 
+                  class="w-full h-full min-h-[380px] border-0 filter contrast-[1.02] saturate-[0.9]"
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+
+                <!-- Floating overlay pin banner -->
+                <div class="absolute top-4 left-4 right-4 sm:right-auto sm:max-w-xs bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-brand-coffee/15 shadow-md flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-brand-espresso text-brand-sand flex items-center justify-center font-display font-extrabold text-sm flex-shrink-0">
+                    D
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-brand-espresso leading-none">DOLAN KOPI</div>
+                    <div class="text-[11px] text-brand-muted mt-0.5">Citra Raya Blok G8 No.1, Cikupa</div>
+                  </div>
+                </div>
+
+                <!-- Direct Route Overlay button -->
+                <div class="absolute bottom-4 right-4">
+                  <a href="https://maps.app.goo.gl/ythFFxaQsXjWjhJi8" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-brand-espresso text-white text-xs font-bold flex items-center gap-2 shadow-lg hover:bg-brand-caramel transition">
+                    <i data-lucide="navigation" class="w-4 h-4 text-brand-amber"></i>
+                    <span>Rute Google Maps</span>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="py-16 bg-brand-oat/30 border-t border-brand-coffee/10">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-10">
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-caramel">Pertanyaan Sering Ditanyakan</span>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-brand-espresso mt-1">
+            Informasi Seputar Berkunjung ke Dolan Kopi
+          </h2>
+        </div>
+
+        <div class="space-y-3.5" id="faqAccordion">
+          
+          <div class="faq-item bg-white rounded-2xl border border-brand-coffee/10 overflow-hidden transition">
+            <button class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-brand-espresso hover:text-brand-caramel transition" onclick="toggleFaq(this)">
+              <span>Apakah ada area smoking dan non-smoking ber-AC?</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-brand-muted faq-icon transition-transform"></i>
+            </button>
+            <div class="faq-content hidden px-5 pb-4 text-xs sm:text-sm text-brand-muted leading-relaxed">
+              Ya, kami menyediakan area indoor ber-AC yang nyaman dan bebas asap rokok untuk bekerja atau bersantai, serta area semi-outdoor teduh untuk Anda yang ingin merokok atau menikmati udara terbuka.
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-2xl border border-brand-coffee/10 overflow-hidden transition">
+            <button class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-brand-espresso hover:text-brand-caramel transition" onclick="toggleFaq(this)">
+              <span>Berapa kisaran harga per orang di Dolan Kopi?</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-brand-muted faq-icon transition-transform"></i>
+            </button>
+            <div class="faq-content hidden px-5 pb-4 text-xs sm:text-sm text-brand-muted leading-relaxed">
+              Rata-rata pengeluaran pengunjung adalah <strong>Rp 25.000 – Rp 50.000 per orang</strong>. Minuman kopi dan non-kopi mulai dari Rp 25.000, camilan gurih mulai dari Rp 25.000, dan makanan berat di kisaran Rp 40.000-an.
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-2xl border border-brand-coffee/10 overflow-hidden transition">
+            <button class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-brand-espresso hover:text-brand-caramel transition" onclick="toggleFaq(this)">
+              <span>Apakah bisa booking atau reservasi untuk kumpul komunitas?</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-brand-muted faq-icon transition-transform"></i>
+            </button>
+            <div class="faq-content hidden px-5 pb-4 text-xs sm:text-sm text-brand-muted leading-relaxed">
+              Tentu bisa! Silakan hubungi nomor WhatsApp resmi kami di <a href="https://wa.me/6281198895355" class="text-brand-caramel font-semibold underline">0811-9889-5355</a> minimal 1 hari sebelumnya agar tim kami dapat menyiapkan tata meja terbaik.
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-2xl border border-brand-coffee/10 overflow-hidden transition">
+            <button class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-brand-espresso hover:text-brand-caramel transition" onclick="toggleFaq(this)">
+              <span>Apakah tersedia colokan listrik dan Wi-Fi untuk WFC?</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-brand-muted faq-icon transition-transform"></i>
+            </button>
+            <div class="faq-content hidden px-5 pb-4 text-xs sm:text-sm text-brand-muted leading-relaxed">
+              Tersedia banyak stopkontak di dekat meja area indoor serta fasilitas Wi-Fi berkecepatan stabil khusus pengunjung kedai. Password Wi-Fi tertera di struk atau tanyakan langsung pada barista.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-espresso text-brand-sand pt-16 pb-28 sm:pb-16 border-t border-brand-coffee/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        
+        <!-- Brand Info -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-brand-caramel text-white flex items-center justify-center font-display font-extrabold text-lg">
+              D
+            </div>
+            <div>
+              <span class="font-display font-bold text-xl text-white tracking-tight">DOLAN KOPI</span>
+              <span class="block text-[11px] text-brand-sand/70 uppercase tracking-wider">Citra Raya · Cikupa</span>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-brand-sand/70 max-w-md leading-relaxed">
+            Menghadirkan kenyamanan seduhan kopi lokal berkualitas, ruang berkreasi, dan obrolan hangat tanpa batas di kawasan Citra Raya, Tangerang.
+          </p>
+          <div class="pt-1 flex items-center gap-3 text-xs text-brand-sand/80">
+            <span class="flex items-center gap-1.5">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-brand-amber"></i>
+              Setiap Hari 10:30 – 22:30 WIB
+            </span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Tautan Cepat</h4>
+          <ul class="space-y-2 text-xs text-brand-sand/80">
+            <li><a href="#beranda" class="hover:text-brand-amber transition">Beranda</a></li>
+            <li><a href="#suasana" class="hover:text-brand-amber transition">Suasana & Tempat</a></li>
+            <li><a href="#menu" class="hover:text-brand-amber transition">Buku Menu & Harga</a></li>
+            <li><a href="#estimator" class="hover:text-brand-amber transition">Kalkulator Budget</a></li>
+            <li><a href="#lokasi" class="hover:text-brand-amber transition">Lokasi & Jam Buka</a></li>
+          </ul>
+        </div>
+
+        <!-- Contacts -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Kontak & Hubungi</h4>
+          <ul class="space-y-2.5 text-xs text-brand-sand/80">
+            <li class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-amber"></i>
+              <a href="tel:081198895355" class="hover:text-white transition">0811-9889-5355</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="message-circle" class="w-3.5 h-3.5 text-brand-amber"></i>
+              <a href="https://wa.me/6281198895355" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">WhatsApp Official</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-amber"></i>
+              <a href="https://maps.app.goo.gl/ythFFxaQsXjWjhJi8" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">Google Maps Lokasi</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-brand-sand/50 gap-3">
+        <p>© 2026 Dolan Kopi. Jl. Verdi Timur No.1 Blok G8, Dukuh, Kec. Cikupa, Tangerang, Banten 15710.</p>
+        <p>Buka setiap hari mulai pukul 10.30 WIB.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY BOTTOM ACTION BAR -->
+  <div class="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-brand-coffee/15 px-4 py-2.5 shadow-2xl flex items-center justify-between gap-3">
+    <a href="#menu" class="flex-1 py-2 rounded-xl bg-brand-oat text-brand-espresso text-xs font-bold flex items-center justify-center gap-1.5 active:scale-95 transition">
+      <i data-lucide="coffee" class="w-3.5 h-3.5 text-brand-caramel"></i>
+      <span>Menu</span>
+    </a>
+    <a href="https://maps.app.goo.gl/ythFFxaQsXjWjhJi8" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 rounded-xl bg-brand-oat text-brand-espresso text-xs font-bold flex items-center justify-center gap-1.5 active:scale-95 transition">
+      <i data-lucide="navigation" class="w-3.5 h-3.5 text-brand-caramel"></i>
+      <span>Maps</span>
+    </a>
+    <button onclick="openWhatsAppModal()" class="flex-1 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold flex items-center justify-center gap-1.5 active:scale-95 transition shadow-sm">
+      <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+      <span>WhatsApp</span>
+    </button>
+  </div>
+
+  <!-- WHATSAPP DIALOG / MODAL -->
+  <div id="waModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-brand-coffee/10 relative animate-scale-up">
+      <button onclick="closeWhatsAppModal()" class="absolute top-4 right-4 p-2 rounded-full hover:bg-brand-oat text-brand-muted hover:text-brand-espresso transition">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center">
+          <i data-lucide="message-circle" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h3 class="font-display font-bold text-base text-brand-espresso">WhatsApp Dolan Kopi</h3>
+          <p class="text-xs text-brand-muted">0811-9889-5355 · Respon Cepat</p>
+        </div>
+      </div>
+
+      <p class="text-xs text-brand-coffee leading-relaxed mb-4">
+        Pilih keperluan Anda untuk membuat pesan WhatsApp otomatis yang rapi:
+      </p>
+
+      <div class="space-y-2 mb-4">
+        <button onclick="sendPredefinedWA('Halo Dolan Kopi, saya mau tanya ketersediaan meja untuk nongkrong / WFC hari ini.')" class="w-full text-left p-3 rounded-xl border border-brand-coffee/15 hover:border-brand-caramel hover:bg-brand-oat/50 text-xs font-medium text-brand-espresso transition flex items-center justify-between">
+          <span>🪑 Tanya Ketersediaan Meja / Tempat</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-muted"></i>
+        </button>
+        <button onclick="sendPredefinedWA('Halo Dolan Kopi, saya mau reservasi meja untuk acara kumpul kawan/komunitas.')" class="w-full text-left p-3 rounded-xl border border-brand-coffee/15 hover:border-brand-caramel hover:bg-brand-oat/50 text-xs font-medium text-brand-espresso transition flex items-center justify-between">
+          <span>👥 Reservasi Kumpul Komunitas / Rombongan</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-muted"></i>
+        </button>
+        <button onclick="sendPredefinedWA('Halo Dolan Kopi, saya mau tanya rekomendasi beans / menu kopi favorit hari ini.')" class="w-full text-left p-3 rounded-xl border border-brand-coffee/15 hover:border-brand-caramel hover:bg-brand-oat/50 text-xs font-medium text-brand-espresso transition flex items-center justify-between">
+          <span>☕ Tanya Rekomendasi Menu & Beans Kopi</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-muted"></i>
+        </button>
+        <button onclick="sendPredefinedWA('Halo Dolan Kopi, mau pesan makanan & minuman untuk take-away.')" class="w-full text-left p-3 rounded-xl border border-brand-coffee/15 hover:border-brand-caramel hover:bg-brand-oat/50 text-xs font-medium text-brand-espresso transition flex items-center justify-between">
+          <span>🛍️ Pesan Bungkus (Takeaway)</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-muted"></i>
+        </button>
+      </div>
+
+      <div class="pt-3 border-t border-brand-coffee/10 flex items-center justify-between text-[11px] text-brand-muted">
+        <span>Buka setiap hari mulai pukul 10.30 WIB</span>
+        <button onclick="sendPredefinedWA('Halo Dolan Kopi!')" class="text-brand-caramel font-bold hover:underline">
+          Chat Kosong &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-20 sm:bottom-6 right-6 z-50 bg-brand-espresso text-brand-cream px-4 py-3 rounded-2xl shadow-2xl border border-white/10 text-xs font-semibold flex items-center gap-2 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-300">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastMessage">Pesan berhasil dikirim</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
